@@ -104,7 +104,7 @@ import { toast } from "react-toastify"
 export default function LoginForm() {
 
     const navigate = useNavigate()
-    const {fetchUserDetails}= useContext(Context)
+    const {fetchUserDetails,fetchUserAddToCart}= useContext(Context)
   const {
     register,
     handleSubmit,
@@ -125,6 +125,7 @@ export default function LoginForm() {
         toast.success(dataApi.message);
         navigate('/');
         fetchUserDetails(); 
+        fetchUserAddToCart()
       } 
       
     } catch (error) {

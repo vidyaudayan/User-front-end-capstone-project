@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Link } from 'react-router-dom';
 import logo from '../../assets/logo.png'
 import { GrSearch } from "react-icons/gr";
@@ -11,18 +11,19 @@ import { useNavigate } from 'react-router-dom';
 import { setUserDetails } from '../../features/user/userSlice';
 import axios from 'axios';
 import MegaMenu from '../NavMenu/MegaMenu';
+import Context from '../../context/context';
 
 
 const Header = () => {
-  const [menuDisplay, setMenuDisplay]= useState(false)
+  const [menuDisplay, setMenuDisplay] = useState(false)
   const user = useSelector(state => state?.user?.user)
   console.log("user header", user)
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const context = useContext(Context)
 
 
   const handleLogout = async () => {
-
 
     try {
       const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/user/logout`, {}, {
@@ -45,59 +46,75 @@ const Header = () => {
       toast.error(data.message)
     }
   };
-
+  console.log("header cart", context)
 
   return (
-    <header className='h-24 shadow-md w-full fixed mb-8 z-40 bg-blue-500 md:bg-green-500 '>
+    <header className='h-24 shadow-md w-full fixed mb-8 z-40 bg-blue-500 md:bg-slate-200 '>
       <div className='h-full container mx-auto flex items-center px-4 justify-between'>
 
         <div className='ml-6' >
-          <Link to='/home'> <img className='w-60 ' src={logo} alt="" /></Link>
+          <Link to='/'> <img className='w-60 ' src={logo} alt="" /></Link>
         </div>
-          <div>
-       
-<MegaMenu/>
-          </div>
-     
-        <div className='hidden lg:flex  items-center mb-2 justify-between border  border-fuchsia-800 rounded-full pl-2 '>
+        <div>
+
+          <MegaMenu />
+        </div>
+
+        {/*<div className='hidden lg:flex  items-center mb-2 justify-between border  border-fuchsia-800 rounded-full pl-2 '>
           <input className='w-full  outline-none ' type="text" placeholder='Search your products...' />
           <div className='text-lg min-w-[50px] h-8 bg-fuchsia-800 flex items-center justify-center rounded-r-full'><GrSearch /></div>
+        </div>*/}
+
+        <div className='hidden lg:flex items-center mb-6 justify-between border border-slate-300 rounded-full px-4 bg-white shadow-md'>
+          <input className='w-full outline-none px-2 py-1 text-gray-700' type="text" placeholder='Search your products...' />
+          <div className='text-xl min-w-[50px] h-10 bg-white flex items-center justify-center rounded-full text-black cursor-pointer'>
+            <GrSearch />
+          </div>
         </div>
+
+
         <div className='flex  items-center gap-4'>
-         
-            <div className='flex  justify-center'>
-              {
-                user?.firstName ? (
-                  <h4 className='text-xl capitalize'>{user.firstName}</h4>
-                ) : ("")
-              }
-            </div>
-           
 
-       <div className='flex flex-col items-center  justify-center  '>
-       <div className='text-2xl cursor-pointer' onClick={()=>setMenuDisplay(preve => !preve)}>
-            <FaUserAlt className='' /></div>
-           {
-            menuDisplay && (
-              <div className='absolute mt-8 bg-white bottom-0 top-11 h-fit p-2 shadow-lg rounded  '>
-              <nav>
-                <Link to={'/admin-panel'} className='hover:bg-slate-100 p-2 hidden md:block' onClick={()=>setMenuDisplay(preve => !preve)} >Admin panel</Link>
-              </nav>
-            </div>
-            )
-           }
-
-           
-       </div>
-          
+          <div className='flex  justify-center'>
+            {
+              user?.firstName ? (
+                <h4 className='text-xl capitalize'>{user.firstName}</h4>
+              ) : ("")
+            }
+          </div>
 
 
-          <div className='text-2xl relative' >
-            <span> <FaShoppingBag /></span>
-            <div className=' bg-fuchsia-600 text-white w-4 h-4 rounded-full p-2 flex items-center justify-center absolute -top-2 -right-2'>
-              <p className='text-sm'>0</p></div>
+          <div className='flex flex-col items-center  justify-center  '>
+            <div className='text-2xl cursor-pointer' onClick={() => setMenuDisplay(preve => !preve)}>
+              <FaUserAlt className='' /></div>
+            {
+              menuDisplay && (
+                <div className='absolute mt-8 bg-white bottom-0 top-11 h-fit p-2 shadow-lg rounded  '>
+                  <nav>
+                    <Link to={'/admin-panel'} className='hover:bg-slate-100 p-2 hidden md:block' onClick={() => setMenuDisplay(preve => !preve)} >Admin panel</Link>
+                  </nav>
+                </div>
+              )
+            }
+
 
           </div>
+
+
+
+          <Link to={'/cart'} className='text-2xl relative' >
+            <span> <FaShoppingBag /></span>
+            {
+              user?.firstName ? (
+
+                <div className=' bg-fuchsia-600 text-white w-5 h-5 rounded-full p-2 flex items-center justify-center absolute -top-2 -right-3'>
+                  <p className='text-sm'>{context.cartTotalItems}</p></div>
+              ) : ("")
+            }
+
+
+
+          </Link>
         </div>
         <div>
           {

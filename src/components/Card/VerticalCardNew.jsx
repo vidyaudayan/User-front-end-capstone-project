@@ -1,16 +1,24 @@
 import React, { useEffect, useState, useRef } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
-
+import { useContext } from 'react'
 import displayINRCurrency from '../../helpers/Currency'
 import { addTocart } from '../../helpers/AddtoCart'
-
+import Context from "../../context/context"
+ 
 export const VerticalCardNew = ({ category, heading }) => {
     const [data, setData] = useState([])
     const [loading, setLoading] = useState(false)
     const loadingList = new Array(5).fill(null)
     const [products, setProducts] = useState([]);
 
+    const {fetchUserAddToCart}= useContext(Context)
+    
+    const handleAddToCart = async(id)=>{
+        await addTocart(id)
+        fetchUserAddToCart()
+     }
+ 
 
 
     useEffect(() => {
@@ -35,9 +43,13 @@ export const VerticalCardNew = ({ category, heading }) => {
                 <div className='flex flex-wrap -mx-2'>
                     {products.map((product, index) => {
                         return (
-                            <Link to={'/products/'+product?._id} className='w-full sm:w-1/2 md:w-1/3 lg:w-1/4 p-2' key={index}>
+                            <div className='w-full sm:w-1/2 md:w-1/3 lg:w-1/4 p-2' key={index}>
                                 <div className='border rounded-lg overflow-hidden shadow-lg transform hover:scale-105 transition-transform duration-300'>
+                                    
+                                    <Link  to={'/products/'+product?._id}>
                                     <img src={product.productPictures[0]} className='w-full h-full ' alt={product.title} />
+                                    </Link>
+                                   
                                     <div className='p-4 bg-white'>
                                         <h2 className='font-medium text-base md:text-lg truncate'>{product?.title}</h2>
                                         <p className='capitalize text-slate-500 mt-1'>{product?.slug}</p>
@@ -46,12 +58,12 @@ export const VerticalCardNew = ({ category, heading }) => {
                                             <p className='line-through text-slate-400'>{displayINRCurrency(product?.price)}</p>
                                         </div>
                                         <div className='flex justify-center items-center'>
-                                        <button className='mt-3 bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-full text-sm' onClick={()=>addTocart(e,product?._id)}>Add to Cart</button>
+                                        <button className='mt-3 bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-full text-sm' onClick={()=>handleAddToCart(product?._id)}>Add to Cart</button>
                                         </div>
                                        
                                     </div>
                                 </div>
-                            </Link>
+                            </div>
                         );
                     })}
                 </div>

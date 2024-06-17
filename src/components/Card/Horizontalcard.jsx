@@ -1,8 +1,12 @@
 import React, { useEffect, useState ,useRef} from 'react'
 import axios from 'axios'
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa6'
-
+import Context from "../../context/context"
+import { useContext } from 'react'
+import { addTocart } from '../../helpers/AddtoCart'
 import displayINRCurrency from '../../helpers/Currency'
+
+
 export const Horizontalcard = ({category,heading}) => {
     const [data,setData]= useState([])
     const [loading,setLoading]= useState(false)
@@ -11,6 +15,13 @@ export const Horizontalcard = ({category,heading}) => {
 
     const [scroll,setScroll] = useState(0)
     const scrollElement = useRef()
+
+    const {fetchUserAddToCart}= useContext(Context)
+    
+    const handleAddToCart = async(id)=>{
+        await addTocart(id)
+        fetchUserAddToCart()
+     }
 
     useEffect(() => {
         const fetchProducts = async () => {
@@ -56,7 +67,7 @@ export const Horizontalcard = ({category,heading}) => {
     < p className='text-red-600 font-medium' >{displayINRCurrency(product?.sellingPrice)}</p>
     <p className='line-through text-slate-400'>{displayINRCurrency(product?.price)}</p>
 </div>
-<button className='bg-red-500 hover:bg-red-600 text-white p-1 px-2 rounded-full text-sm py-1 '>Shop Now</button>
+<button className='bg-red-500 hover:bg-red-600 text-white p-1 px-2 rounded-full text-sm py-1 'onClick={()=>handleAddToCart(product?._id)}>Add to Cart</button>
 </div>
 <div>
     

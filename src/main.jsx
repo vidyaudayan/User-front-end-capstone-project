@@ -22,6 +22,8 @@ import AllProductsDisplay from './pages/AllProductsDisplay.jsx'
 import WomenProductsDisplay from './pages/WomenProductsDisplay.jsx'
 import KidsProductsDisplay from './pages/KidsProductsDisplay.jsx'
 import Productdetails from './pages/Productdetails.jsx'
+import Cart from './pages/CartItems.jsx'
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -29,7 +31,7 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       {
-        path: "/home",
+        path: "/",
         element: <Home/>,
       },
       {
@@ -59,6 +61,10 @@ const router = createBrowserRouter([
       {
         path:'/products/:productId',
         element:<Productdetails/>
+      },
+      {
+          path:"/cart",
+          element:<Cart/>
       },
      
       {
