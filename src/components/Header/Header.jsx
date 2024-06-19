@@ -96,7 +96,7 @@ navigate(`/search?q=${value}`)
               menuDisplay && (
                 <div className='absolute mt-8 bg-white bottom-0 top-11 h-fit p-2 shadow-lg rounded  '>
                   <nav>
-                    <Link to={'/admin-panel'} className='hover:bg-slate-100 p-2 hidden md:block' onClick={() => setMenuDisplay(preve => !preve)} >Admin panel</Link>
+                    <Link className='hover:bg-slate-100 p-2 hidden md:block' onClick={() => setMenuDisplay(preve => !preve)} ></Link>
                   </nav>
                 </div>
               )

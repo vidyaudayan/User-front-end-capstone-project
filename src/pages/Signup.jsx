@@ -99,7 +99,7 @@ export default function SignUpForm() {
 
   const navigate= useNavigate()
   const onSubmit =async (data) => {
- //axios.post('http://localhost:3000/api/v1/user/signup', data, {withCredentials:true})
+ 
  axios.post(`${import.meta.env.VITE_BASE_URL}/user/signup`, data, {withCredentials:true})
  .then(res=>{
   console.log(res)
@@ -108,7 +108,7 @@ export default function SignUpForm() {
  })
  .catch(error=>{
     if (error.response && error.response.status === 409) {
-        // Assuming 409 Conflict is the status code for already registered email
+        
         toast.error('User already exists. Please use a different email.');
       } else {
         toast.error('Signup failed. Please try again.');
