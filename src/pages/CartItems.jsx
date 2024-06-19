@@ -135,14 +135,14 @@ const Cart = () => {
 
 
 
-                                        <div className='ml-6  relative'>
+                                        <div className='  relative'>
 
 
                                             {/* delete product */}
                                             <div className=''>
-                                                <div className='absolute left-80 w-full  text-xl flex flex-col items-center gap-1 lg:ml-36'>
+                                                <div className='absolute left-80 w-72  text-xl flex flex-col items-center  gap-1 lg:ml-36'>
 
-                                                    <div className='flex flex-col items-center gap-1'>
+                                                    <div className='flex flex-col items-center pr-8 gap-1'>
 
 
                                                         <p className='text-slate-700 text-sm '>MRP<span className='line-through font-normal px-1'>{displayINRCurrency(productItem.product.price)}</span></p>
@@ -151,10 +151,10 @@ const Cart = () => {
                                                     </div>
 
 
-                                                    <div className='cursor-pointer rounded-full p-1 hover:bg-white'>
+                                                    <div className='cursor-pointer w-16 p-2 text-xl flex items-center hover:text-2xl hover:text-red-900'>
                                                         <MdDelete onClick={() => handleDeleteProduct(productItem.product._id)} />
                                                     </div>
-                                                </div>
+                                                </div> 
 
                                             </div>
 
@@ -165,18 +165,19 @@ const Cart = () => {
                                             <p className='text-sm'>Quantity: {productItem.quantity}</p>
                                             <p className='text-sm'>Price: {displayINRCurrency(productItem.product.sellingPrice)}</p>
 
-                                            {/*}  <div className='flex items-center gap-3 mt-1'>
-                                            <button className='bg-blue-400 hover:bg-blue-600 h-6 w-6 rounded flex items-center justify-center  cursor-pointer'><LuMinus /></button>
-                                            
-                                            <p className='text-sm font-medium'>{productItem.quantity}</p>
-                                            <button className='bg-blue-400 hover:bg-blue-600 h-6 w-6 rounded flex items-center justify-center  cursor-pointer'onClick={()=>increaseQty(productItem?.id,productItem?.quantity)}><MdAdd /></button>
-                                        </div>*/}
+                                           
 
                                             <div className='flex items-center gap-3 mt-1'>
                                                 <button
                                                     className='bg-blue-400 hover:bg-blue-600 h-6 w-6 rounded flex items-center justify-center cursor-pointer'
-                                                    onClick={() => updateQuantity(productItem.product._id, productItem.quantity - 1)}
-                                                    disabled={productItem.quantity <= 1} // Disable if quantity is 1
+                                                    onClick={() => {
+                                                        if (productItem.quantity <= 1) {
+                                                          handleDeleteProduct(productItem.product._id);
+                                                        } else {
+                                                          updateQuantity(productItem.product._id, productItem.quantity - 1);
+                                                        }
+                                                      }}
+                                                   
                                                 >
                                                     <LuMinus />
                                                 </button>

@@ -136,31 +136,36 @@ export default function LoginForm() {
   
 //console.log(watch("example")) // watch input value by passing the name of it
 
-  return (
-    
-
-
-    <form className="w-full max-w-2xl py-8 flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)} >
+return (
+    <form className="w-full max-w-md p-8 bg-white shadow-md rounded-lg mx-auto my-8" onSubmit={handleSubmit(onSubmit)}>
         <div className="flex flex-col gap-2">
-            <label htmlFor="email">Email</label>
-            <input className="border border-slate-400" {...register("email", {required:true, maxLength:40})} />
-             {errors.email?.type==="required" && <span className="text-xs text-red-400"> Email is required</span>}
-             {errors.email?.type==="maxLength" && <span className="text-xs text-red-400"> Email cannot exceed 40 characters</span>}
+            <label htmlFor="email" className="text-sm font-medium text-gray-700">Email</label>
+            <input 
+                className="border border-gray-300 p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                {...register("email", {required: true, maxLength: 40})}
+            />
+            {errors.email?.type === "required" && <span className="text-xs text-red-500">Email is required</span>}
+            {errors.email?.type === "maxLength" && <span className="text-xs text-red-500">Email cannot exceed 40 characters</span>}
         </div>
-        <div className="flex flex-col gap-2 ">
-            <label htmlFor="password">Password</label>
-            <input type="password" className="border border-slate-400"  {...register("password" , {required:true})} />
-            {errors.password?.type==="required" && <span className="text-xs text-red-400"> Password is required</span>}
+        
+        <div className="flex flex-col gap-2">
+            <label htmlFor="password" className="text-sm font-medium text-gray-700">Password</label>
+            <input 
+                type="password"
+                className="border border-gray-300 p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                {...register("password", {required: true})}
+            />
+            {errors.password?.type === "required" && <span className="text-xs text-red-500">Password is required</span>}
         </div>
       
-        <div className="flex justify-center">
-        <input className="bg-green-500 px-4 h-10 text-white hover:bg-green-400 cursor-pointer" type="submit" value="Login"/>
-        
+        <div className="flex justify-center mt-4">
+            <input 
+                className="bg-blue-600 px-4 py-2 rounded-md text-white hover:bg-blue-500 cursor-pointer transition duration-300"
+                type="submit"
+                value="Login"
+            />
         </div>
-
-
-
-
     </form>
-  )
+)
+
 }
