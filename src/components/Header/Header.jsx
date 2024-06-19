@@ -46,7 +46,15 @@ const Header = () => {
       toast.error(data.message)
     }
   };
-  console.log("header cart", context)
+
+ const handleSearch = (e)=>{
+const {value}= e.target
+if(value){
+navigate(`/search?q=${value}`)
+}else{
+  navigate('/search')
+}
+ }
 
   return (
     <header className='h-24 shadow-md w-full fixed mb-8 z-40 bg-blue-500 md:bg-slate-200 '>
@@ -60,13 +68,10 @@ const Header = () => {
           <MegaMenu />
         </div>
 
-        {/*<div className='hidden lg:flex  items-center mb-2 justify-between border  border-fuchsia-800 rounded-full pl-2 '>
-          <input className='w-full  outline-none ' type="text" placeholder='Search your products...' />
-          <div className='text-lg min-w-[50px] h-8 bg-fuchsia-800 flex items-center justify-center rounded-r-full'><GrSearch /></div>
-        </div>*/}
+ 
 
         <div className='hidden lg:flex items-center mb-6 justify-between border border-slate-300 rounded-full px-4 bg-white shadow-md'>
-          <input className='w-full outline-none px-2 py-1 text-gray-700' type="text" placeholder='Search your products...' />
+          <input className='w-full outline-none px-2 py-1 text-gray-700' type="text" placeholder='Search your products...' onChange={handleSearch} />
           <div className='text-xl min-w-[50px] h-10 bg-white flex items-center justify-center rounded-full text-black cursor-pointer'>
             <GrSearch />
           </div>

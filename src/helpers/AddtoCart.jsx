@@ -7,7 +7,7 @@
  try {
     const response = await axios.post(
         `${import.meta.env.VITE_BASE_URL}/cart/addtocart`,
-        { productId,quantity}, // Ensure the product ID is sent as an object
+        { productId,quantity}, 
         { withCredentials: true }
     );
     console.log(response);

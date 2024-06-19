@@ -204,7 +204,7 @@ const Cart = () => {
                 {/* Order summary */}
                 <div className='mt-5 lg:mr-36 lg:mt-0 w-[400px] max-w-full p-9'>
                     {
-                        loading ? (
+                        !loading && (!data || data.products.length === 0) ? (
                             <div className='h-72 bg-blue-200 border border-slate-300 animate-pulse'>
                                 <h3>Order Summary</h3>
                             </div>

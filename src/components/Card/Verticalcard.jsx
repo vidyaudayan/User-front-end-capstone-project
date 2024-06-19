@@ -46,7 +46,9 @@ export const Verticalcard = ({ category, heading }) => {
           products.map((product, index) => {
             return (
               <div className='w-full min-w-[300px] md:min-w-[340px] max-w-[300px] md:max-w-[320px]  bg-white rounded-sm shadow-md ' key={index}>
-                <div className='bg-slate-200 h-32 p-2 min-w-[140px] md:min-w-[145px] '>
+                <div className='bg-slate-200 h-32 p-2 min-w-[140px] md:min-w-[145px] flex gap-1'>
+                  <img src={product.productPictures[0]} className='object-cover   hover:scale-110 transition-all' />
+                  <img src={product.productPictures[1]} className='object-cover   hover:scale-110 transition-all' />
                   <img src={product.productPictures[2]} className='object-cover   hover:scale-110 transition-all' />
                 </div>
                 <div className='p-2 grid'>

@@ -23,7 +23,7 @@ import WomenProductsDisplay from './pages/WomenProductsDisplay.jsx'
 import KidsProductsDisplay from './pages/KidsProductsDisplay.jsx'
 import Productdetails from './pages/Productdetails.jsx'
 import Cart from './pages/CartItems.jsx'
-
+import Search from './pages/Search.jsx'
 const router = createBrowserRouter([
   {
     path: "/",
@@ -65,6 +65,10 @@ const router = createBrowserRouter([
       {
           path:"/cart",
           element:<Cart/>
+      },
+      {
+      path:"/search",
+      element:<Search/>
       },
      
       {

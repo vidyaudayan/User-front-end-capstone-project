@@ -47,7 +47,7 @@ const Productdetails = () => {
     const calculateDiscount = (originalPrice, sellingPrice) => {
         if (!originalPrice || !sellingPrice) return 0;
         const discount = ((originalPrice - sellingPrice) / originalPrice) * 100;
-        return discount.toFixed(2); // Keeping 2 decimal places
+        return discount.toFixed(2); 
     };
 
     const discountPercentage = calculateDiscount(data.price, data.sellingPrice);
