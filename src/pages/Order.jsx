@@ -119,7 +119,7 @@ const Order = () => {
 
   const handlePayment= async()=>{
 
-    const stripePromise = await loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
+    const stripePromise = await loadStripe(import.meta.env.VITE_STRIPE_API_KEY);
     const cartItems= data.products
     try {
         const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/payment/checkout`,cartItems, { withCredentials: true });
