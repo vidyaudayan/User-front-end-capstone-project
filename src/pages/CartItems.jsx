@@ -7,6 +7,7 @@ import displayINRCurrency from '../helpers/Currency';
 import { toast } from 'react-toastify';
 import { MdDelete } from "react-icons/md";
 import { useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const Cart = () => {
     const [data, setData] = useState(null);
@@ -19,7 +20,7 @@ const Cart = () => {
     const params = useParams()
     console.log("product id", params)
     const { productId } = params;
-
+    const navigate = useNavigate();
 
     const fetchCart = async () => {
         try {
@@ -160,10 +161,11 @@ const Cart = () => {
 
 
 
-                                            <h3 className='lg:text-md text:sm text-ellipsis line-clamp-1 font-semibold'>{productItem.product.title}</h3>
+                                            <h3 className='lg:text-md text:sm text-ellipsis line-clamp-1 font-semibold dark:text-black'>{productItem.product.title}</h3>
 
-                                            <p className='text-sm'>Quantity: {productItem.quantity}</p>
-                                            <p className='text-sm'>Price: {displayINRCurrency(productItem.product.sellingPrice)}</p>
+                                            <p className='text-sm dark:text-black'>Quantity: {productItem.quantity}</p>
+                                            
+                                            <p className='text-sm dark:text-black'>Price: {displayINRCurrency(productItem.product.sellingPrice)}</p>
 
                                            
 
@@ -182,7 +184,7 @@ const Cart = () => {
                                                     <LuMinus />
                                                 </button>
 
-                                                <p className='text-sm font-medium'>{productItem.quantity}</p>
+                                                <p className='text-sm font-medium dark:text-black'>{productItem.quantity}</p>
 
                                                 <button
                                                     className='bg-blue-400 hover:bg-blue-600 h-6 w-6 rounded flex items-center justify-center cursor-pointer'
@@ -201,24 +203,24 @@ const Cart = () => {
                     }
                 </div>
 
-                {/* Order summary */}
+                {/* Order details */}
                 <div className='mt-5 lg:mr-36 lg:mt-0 w-[400px] max-w-full p-9'>
                     {
                         !loading && (!data || data.products.length === 0) ? (
                             <div className='h-72 bg-blue-200 border border-slate-300 animate-pulse'>
-                                <h3>Order Summary</h3>
+                                <h3 className='dark:text-black'>Order Details</h3>
                             </div>
                         ) : (
                             <div className='h-72 p-6 bg-green-100 flex flex-col border border-red-100'>
                                
-                                <h3 className='text-center font-semibold p-3 bg-red-100 hover:bg-red-300'>Order Summary</h3>
+                                <h3 className='text-center font-semibold p-3 bg-red-100 hover:bg-red-300 dark:text-black'>Order Details</h3>
                                 <div className='border h-52 border-red-200 p-2 hover:bg-green-300  '>
-                                <p className='text-sm font-md pt-1'>Total Items: {context.cartTotalItems}</p>
-                                <p className='text-sm font-md pt-1'>Delivery charge: {displayINRCurrency(0)} <span className='text-green-500 pl-1'>Free</span></p>
-                                <p className='text-sm font-md pt-1'>Platform fee: {displayINRCurrency(17)}</p>
+                                <p className='text-sm font-md pt-1 dark:text-black'>Total Items: {context.cartTotalItems}</p>
+                                <p className='text-sm font-md pt-1 dark:text-black'>Platform fee: {displayINRCurrency(0)} <span className='text-green-500 pl-1'>Free</span></p>
+                                <p className='text-sm font-md pt-1 dark:text-black'>Delivery charge: {displayINRCurrency(17)}</p>
                                 
-                                <p className='text-sm font-bold pt-1'>Total Price: {displayINRCurrency(data && data.products.reduce((acc, item) => acc + (item.product.sellingPrice * item.quantity)+17, 0))}</p>
-                                <button className='bg-green-700 w-full p-2 mt-6 text-white rounded-md hover:bg-white hover:text-green-900'>Proceed to shipping</button>
+                                <p className='text-sm font-bold pt-1 dark:text-black'>Total Price: {displayINRCurrency(data && data.products.reduce((acc, item) => acc + (item.product.sellingPrice * item.quantity)+17, 0))}</p>
+                                <button className='bg-green-700 w-full p-2 mt-6 text-white rounded-md hover:bg-white hover:text-green-900' onClick={() => navigate('/order')}>Proceed to shipping</button>
                                 </div>
                             </div>
                         )

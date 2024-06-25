@@ -49,8 +49,8 @@ export const Horizontalcard = ({category,heading}) => {
 
 <div className='flex items-center gap-4 md:gap-6 overflow-scroll scrollbar-none transition-all' ref={scrollElement}>
 
-<button  className='bg-white shadow-md rounded-full p-1 absolute left-0 text-lg hidden md:block' onClick={scrollLeft}><FaAngleLeft/></button>
-<button  className='bg-white shadow-md rounded-full p-1 absolute right-0 text-lg hidden md:block' onClick={scrollRight}><FaAngleRight/></button> 
+<button  className='bg-white dark:text-black shadow-md rounded-full p-1 absolute left-0 text-lg hidden md:block' onClick={scrollLeft}><FaAngleLeft/></button>
+<button  className='bg-white dark:text-black shadow-md rounded-full p-1 absolute right-0 text-lg hidden md:block' onClick={scrollRight}><FaAngleRight/></button> 
 
 {
     products.map((product,index)=>{
@@ -60,7 +60,7 @@ export const Horizontalcard = ({category,heading}) => {
 <img src={product.productPictures[2]} className='object-scale-up h-full  hover:scale-110 transition-all' />
 </div>
 <div className='p-2 grid'>
-    <h2 className='font-medium text-base md:text-lg text-ellipsis line-clamp-1'>{product?.title}</h2>
+    <h2 className='font-medium text-base md:text-lg text-ellipsis line-clamp-1 text-black'>{product?.title}</h2>
 <p className='capitalize text-slate-500'>{product?.slug}</p>
 
 <div className='flex gap-3'>

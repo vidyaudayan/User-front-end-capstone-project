@@ -7,7 +7,7 @@ const MegaMenu = () => {
     <nav className="megamenu">
       <ul className="megamenu__list">
         <li className="megamenu__item">
-          <a href="#" className="megamenu__link">Men</a>
+          <a href="#" className="megamenu__link dark:text-white">Men</a>
           <div className="megamenu__dropdown">
             <div className="megamenu__column">
               <Link to={'/all-products'}><h3>Clothing</h3></Link>
@@ -47,7 +47,7 @@ const MegaMenu = () => {
           </div>
         </li>
         <li className="megamenu__item">
-          <a href="#" className="megamenu__link">Women</a>
+          <a href="#" className="megamenu__link dark:text-white">Women</a>
           <div className="megamenu__dropdown">
             <div className="megamenu__column">
            <Link to={'/women-all-products'}><h3>Clothing</h3></Link>   
@@ -87,7 +87,7 @@ const MegaMenu = () => {
         </li>
 
         <li className="megamenu__item">
-          <a href="#" className="megamenu__link">KIDS</a>
+          <a href="#" className="megamenu__link dark:text-white">KIDS</a>
           <div className="megamenu__dropdown">
             <div className="megamenu__column">
              <Link to={'/kids-all-products'}><h3>Clothing</h3></Link> 

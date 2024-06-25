@@ -121,12 +121,12 @@ const AllProductsDisplay = () => {
                             <div className='flex items-center gap-3'>
                                 <input type="radio" name='sort' value="lowToHigh"
                                     onChange={handleSortChange} checked={sortOption === 'lowToHigh'}/>
-                                <label htmlFor="">Price- Low to High</label>
+                                <label className='dark:text-black'>Price- Low to High</label>
                             </div>
                             <div className='flex items-center gap-3'>
                                 <input type="radio" name='sort'  value="highToLow"
                                     onChange={handleSortChange}   checked={sortOption === 'highToLow'}/>
-                                <label htmlFor="">Price- High to Low</label>
+                                <label className='dark:text-black'>Price- High to Low</label>
                             </div>
                         </form>
                     </div>
@@ -143,7 +143,7 @@ const AllProductsDisplay = () => {
                                     onChange={handlePriceRangeChange}
                                     checked={priceRange === 'below500'}
                                 />
-                                <label htmlFor="below500">Below Rs.500</label>
+                                <label htmlFor="below500" className='dark:text-black'>Below Rs.500</label>
                             </div>
                             <div className='flex items-center gap-3'>
                                 <input
@@ -153,7 +153,7 @@ const AllProductsDisplay = () => {
                                     onChange={handlePriceRangeChange}
                                     checked={priceRange === '500to1000'}
                                 />
-                                <label htmlFor="500to1000">Rs.500-1000</label>
+                                <label htmlFor="500to1000" className='dark:text-black'>Rs.500-1000</label>
                             </div>
                             <div className='flex items-center gap-3'>
                                 <input
@@ -163,7 +163,7 @@ const AllProductsDisplay = () => {
                                     onChange={handlePriceRangeChange}
                                     checked={priceRange === '1001to1500'}
                                 />
-                                <label htmlFor="1001to1500">Rs.1001-1500</label>
+                                <label htmlFor="1001to1500" className='dark:text-black'>Rs.1001-1500</label>
                             </div>
                             <div className='flex items-center gap-3'>
                                 <input
@@ -173,7 +173,7 @@ const AllProductsDisplay = () => {
                                     onChange={handlePriceRangeChange}
                                     checked={priceRange === '1501to2000'}
                                 />
-                                <label htmlFor="1501to2000">Rs.1501-2000</label>
+                                <label htmlFor="1501to2000" className='dark:text-black'>Rs.1501-2000</label>
                             </div>
                             <div className='flex items-center gap-3'>
                                 <input
@@ -183,7 +183,7 @@ const AllProductsDisplay = () => {
                                     onChange={handlePriceRangeChange}
                                     checked={priceRange === '2001to2500'}
                                 />
-                                <label htmlFor="2001to2500">Rs.2001-2500</label>
+                                <label htmlFor="2001to2500" className='dark:text-black'>Rs.2001-2500</label>
                             </div>
                         </form>
                     </div>
@@ -203,7 +203,7 @@ const AllProductsDisplay = () => {
                                         onChange={handleCheckboxChange}
                                         checked={selectedSubCategories.includes(categoryName.value)}
                                     />
-                                    <label htmlFor={categoryName.value}>{categoryName.label}</label>
+                                    <label htmlFor={categoryName.value} className='dark:text-black'>{categoryName.label}</label>
                                 </div>
                             ))}
                         </form>

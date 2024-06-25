@@ -12,6 +12,7 @@ import { setUserDetails } from '../../features/user/userSlice';
 import axios from 'axios';
 import MegaMenu from '../NavMenu/MegaMenu';
 import Context from '../../context/context';
+import Theme from '../Theme';
 
 
 const Header = () => {
@@ -57,7 +58,7 @@ navigate(`/search?q=${value}`)
  }
 
   return (
-    <header className='h-24 shadow-md w-full fixed mb-8 z-40 bg-blue-500 md:bg-slate-200 '>
+    <header className='h-24 shadow-md w-full fixed mb-8 z-40 dark:bg-black md:bg-slate-200 '>
       <div className='h-full container mx-auto flex items-center px-4 justify-between'>
 
         <div className='ml-6' >
@@ -120,11 +121,16 @@ navigate(`/search?q=${value}`)
 
 
           </Link>
+          <div>
+          <Theme/>
         </div>
+        </div>
+
+      
         <div>
           {
             user?.id ? (
-              <button onClick={handleLogout} className=' bg-red-600 text-white px-3 py-1 rounded-full hover:bg-red-700 underline hover:underline-offset-2'>Sign Out</button>
+              <button onClick={handleLogout} className=' bg-red-600 text-white h-10 rounded w-20 p-2 mr-8 ml-2 hover:bg-red-700 underline hover:underline-offset-2'>Sign Out</button>
             ) : (
               <Link to='/signup' className=' bg-red-600 text-white px-3 py-1 rounded-full hover:bg-red-700 underline hover:underline-offset-2'>Signup/Login</Link>
             )

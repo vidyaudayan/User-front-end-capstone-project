@@ -117,7 +117,9 @@ export default function LoginForm() {
       const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/user/signin`, data, {
         withCredentials: true
       });
-  
+      const { theme } = response.data;
+      document.documentElement.classList.add(theme);
+      localStorage.setItem('theme', theme);
       console.log(response);
       const dataApi = response.data;
   

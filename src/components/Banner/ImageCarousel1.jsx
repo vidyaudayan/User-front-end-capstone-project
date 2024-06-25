@@ -1,11 +1,11 @@
 
 
 
-import image1 from '../../assets/banner/bannerpic11.avif'
-import image2 from '../../assets/banner/bannerpic1.avif'
-import image3 from '../../assets/banner/bannerpic9.avif'
-import image4 from '../../assets/banner/bannerpic10.webp'
-import image5 from '../../assets/banner/bannerpic8.avif'
+import image1 from '../../assets/banner/banner-1.1.avif'
+import image2 from '../../assets/banner/banner-1.2.avif'
+import image3 from '../../assets/banner/banner-1.3.avif'
+import image4 from '../../assets/banner/banner-1.4.avif'
+import image5 from '../../assets/banner/banner-1.5.avif'
 
 import React from 'react'
 import useEmblaCarousel from 'embla-carousel-react'
@@ -14,12 +14,12 @@ import Autoplay from 'embla-carousel-autoplay'
 
 const runningText = '#Shop with Exciting Offers..##Shop with Exciting Offers..##Shop with Exciting Offers..##Shop with Exciting Offers..##Shop with Exciting Offers..##Shop with Exciting Offers..##Shop with Exciting Offers..##Shop with Exciting Offers..##Shop with Exciting Offers..#Shop with Exciting Offers..#Shop with Exciting Offers.';
 
-export function EmblaCarousel() {
+export function EmblaCarousel1() {
 
     const [emblaRef] = useEmblaCarousel({ loop: true }, [Autoplay()])
 
     return (
-        <div className="embla " ref={emblaRef}>
+        <div className="embla pt-6" ref={emblaRef}>
             <div className="embla__container">
                 <div className="embla__slide">
                     <img src={image1} alt='' />

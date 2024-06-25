@@ -23,13 +23,20 @@ import WomenProductsDisplay from './pages/WomenProductsDisplay.jsx'
 import KidsProductsDisplay from './pages/KidsProductsDisplay.jsx'
 import Productdetails from './pages/Productdetails.jsx'
 import Cart from './pages/CartItems.jsx'
+import Order from './pages/Order.jsx'
 import Search from './pages/Search.jsx'
+import PaymentSuccess from './pages/PaymentSuccess.jsx'
+import PaymentCancel from './pages/PaymentCancel.jsx'
+
 const router = createBrowserRouter([
   {
+   
     path: "/",
     element: <Root/>,
     errorElement: <ErrorPage />,
+   
     children: [
+     
       {
         path: "/",
         element: <Home/>,
@@ -66,6 +73,18 @@ const router = createBrowserRouter([
           path:"/cart",
           element:<Cart/>
       },
+      {
+        path:"/order",
+        element:<Order/>
+    },
+    {
+      path:"/success",
+      element:<PaymentSuccess/>
+    },
+    {
+      path:"/cancel",
+      element:<PaymentCancel/>
+    },
       {
       path:"/search",
       element:<Search/>

@@ -5,6 +5,8 @@ import axios from 'axios'
 import { FaStar } from "react-icons/fa";
 import { FaStarHalfAlt } from "react-icons/fa";
 import displayINRCurrency from '../helpers/Currency';
+import ReviewForm from './Review';
+import { toast } from 'react-toastify';
 
 import Horizontalcard from '../components/Card/Horizontalcard';
 const Productdetails = () => {
@@ -12,6 +14,8 @@ const Productdetails = () => {
     const productImageListLoading = new Array(4).fill(null)
     const [activeImage, setActiveImage]= useState('')
 
+    const [showReviewForm, setShowReviewForm] = useState(false);
+    const [reviews, setReviews] = useState([]);
     const [data, setData] = useState({
         title: "",
         slug: "",
@@ -34,11 +38,24 @@ const Productdetails = () => {
             setActiveImage(response?.data?.productPictures[0])
         } catch (error) {
             console.error("Error fetching product details:", error);
+           
         }
+
     };
 
+    const fetchReviews = async () => {
+        try {
+          const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/review/product/${productId}`);
+          setReviews(response.data);
+        } catch (error) {
+          console.error('Error fetching reviews:', error);
+          toast.error('An error occurred in review');
+        }
+      };
+
     useEffect(() => {
-        fetchProductsDetails()
+        fetchProductsDetails();
+        fetchReviews();
     }, [productId])
 
     const handleImageChange=(img)=>{
@@ -53,6 +70,10 @@ const Productdetails = () => {
     const discountPercentage = calculateDiscount(data.price, data.sellingPrice);
 
     const descriptionItems = data.description.split(',').map((item, index) => item.trim());
+
+    const handleReviewSubmitted = (newReview) => {
+        setReviews([...reviews, newReview]);
+      };
 
 
     return (
@@ -131,7 +152,7 @@ const Productdetails = () => {
                 <p className='text-slate-600 font-medium mb-2'>Product Description</p>
                 <ul className='list-disc list-inside'>
                     {descriptionItems.map((item, index) => (
-                        <li key={index}>{item}</li>
+                        <li key={index} className='dark:text-black'>{item}</li>
                     ))}
                 </ul>
             </div>
@@ -143,6 +164,41 @@ const Productdetails = () => {
 <Horizontalcard category={data?.category} heading={'Products you may also like..'}/>
 
 </div>
+
+<div className="mt-6">
+        <h3 className="text-xl font-medium">Reviews</h3>
+        {reviews.length > 0 ? (
+          reviews.map((review) => (
+            <div key={review._id} className=" border p-4 rounded my-2">
+              <div className="flex items-center">
+                {[...Array(review.rating)].map((_, i) => (
+                  <FaStar key={i} className="text-yellow-500" />
+                ))}
+              </div>
+              <p>{review.comment}</p>
+            </div>
+          ))
+        ) : (
+          <p>No reviews yet.</p>
+        )}
+        <button
+          className="mt-4 bg-blue-500 text-white px-4 py-2 rounded"
+          onClick={() => setShowReviewForm(true)}
+        >
+          Add Review
+        </button>
+      </div>
+
+      {showReviewForm && (
+        <ReviewForm
+          productId={productId}
+        
+          onReviewSubmitted={handleReviewSubmitted}
+          onClose={() => setShowReviewForm(false)}
+        />
+      )}
+
+
         </div>
        
     )

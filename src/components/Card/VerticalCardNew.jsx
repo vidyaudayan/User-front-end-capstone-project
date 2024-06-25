@@ -50,15 +50,15 @@ export const VerticalCardNew = ({ category, heading }) => {
                                     <img src={product.productPictures[0]} className='w-full h-full ' alt={product.title} />
                                     </Link>
                                    
-                                    <div className='p-4 bg-white'>
-                                        <h2 className='font-medium text-base md:text-lg truncate'>{product?.title}</h2>
+                                    <div className='p-1 bg-white'>
+                                        <h2 className='font-medium text-base text-black md:text-lg truncate'>{product?.title}</h2>
                                         <p className='capitalize text-slate-500 mt-1'>{product?.slug}</p>
                                         <div className='flex items-center gap-3 mt-2'>
                                             <p className='text-red-600 font-medium'>{displayINRCurrency(product?.sellingPrice)}</p>
                                             <p className='line-through text-slate-400'>{displayINRCurrency(product?.price)}</p>
                                         </div>
                                         <div className='flex justify-center items-center'>
-                                        <button className='mt-3 bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-full text-sm' onClick={()=>handleAddToCart(product?._id)}>Add to Cart</button>
+                                        <button className='mt-3 mb-2 bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-full text-sm' onClick={()=>handleAddToCart(product?._id)}>Add to Cart</button>
                                         </div>
                                        
                                     </div>

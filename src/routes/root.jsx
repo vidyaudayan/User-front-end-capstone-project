@@ -10,7 +10,8 @@ import { useState } from 'react'
 import { useEffect, createContext } from 'react'
 import { useDispatch } from 'react-redux'
 import { setUserDetails } from '../features/user/userSlice.js'
-
+import Breadcrumbs from '../components/Breadcrumbs.jsx'
+import Theme from '../components/Theme.jsx'
 export const cartContext = createContext();
 
 
@@ -66,7 +67,7 @@ fetchUserAddToCart()
 },[])
 
   return (
-    <div>
+    <div className="min-h-screen bg-white dark:bg-gray-900 text-black dark:text-white">
        <Context.Provider value={{
           fetchUserDetails, // user detail fetch 
        cartTotalItems,
@@ -74,10 +75,12 @@ fetchUserAddToCart()
       }}>
       <ToastContainer  position='top-center'/>
         <Header/>
+        <Theme/>
         <main className='min-h-[calc(100vh-120px)] pt-24'>
+       <Breadcrumbs/>
         <Outlet/>
         </main>
-      
+       <Footer/>
         </Context.Provider>
     </div>
   )
