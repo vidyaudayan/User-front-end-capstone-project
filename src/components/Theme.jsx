@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { FaSun } from "react-icons/fa";
 import { IoMoon } from "react-icons/io5";
-<IoMoon />
+
 
 const Theme = () => {
   const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');

@@ -124,9 +124,9 @@ navigate(`/search?q=${value}`)
           <div>
           <Theme/>
         </div>
-        </div>
-
       
+        </div>
+       
         <div>
           {
             user?.id ? (
