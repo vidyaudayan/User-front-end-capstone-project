@@ -86,6 +86,12 @@ const Breadcrumbs = () => {
   const location = useLocation();
   const pathnames = location.pathname.split('/').filter((x) => x);
 
+
+  const excludePaths = ['/', '/signup', '/login'];
+
+  if (excludePaths.includes(location.pathname)) {
+    return null;
+  }
   return (
     <nav>
       <ol className="breadcrumb">
