@@ -58,7 +58,7 @@ navigate(`/search?q=${value}`)
  }
 
   return (
-    <header className='h-24 shadow-md w-full fixed mb-8 z-40 dark:bg-black md:bg-slate-400 '>
+    <header className='h-24 shadow-md w-full fixed mb-8 z-40 dark:bg-black bg-slate-300 '>
       <div className='h-full container mx-auto flex items-center px-4 justify-between'>
 
         <div className='ml-6' >
