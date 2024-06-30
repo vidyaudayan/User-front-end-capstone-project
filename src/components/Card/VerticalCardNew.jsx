@@ -6,7 +6,7 @@ import displayINRCurrency from '../../helpers/Currency'
 import { addTocart } from '../../helpers/AddtoCart'
 import Context from "../../context/context"
  
-export const VerticalCardNew = ({ category, heading }) => {
+export const VerticalCardNew = ({ category, heading,product }) => {
     const [data, setData] = useState([])
     const [loading, setLoading] = useState(false)
     const loadingList = new Array(5).fill(null)
@@ -38,12 +38,12 @@ export const VerticalCardNew = ({ category, heading }) => {
 
   
         return (
-            <div className='p-4'>
-                <h2 className='text-2xl font-semibold py-4'>{heading}</h2>
+            <div className='p-2'>
+                <h2 className='text-2xl font-semibold mb-2'>{heading}</h2>
                 <div className='flex flex-wrap -mx-2'>
                     {products.map((product, index) => {
                         return (
-                            <div className='w-full sm:w-1/2 md:w-1/3 lg:w-1/4 p-2' key={index}>
+                            <div className='w-full sm:w-1/2 md:w-1/3 lg:w-1/4 p-2 ' key={index}>
                                 <div className='border rounded-lg overflow-hidden shadow-lg transform hover:scale-105 transition-transform duration-300'>
                                     
                                     <Link  to={'/products/'+product?._id}>

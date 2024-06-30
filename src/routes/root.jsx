@@ -24,7 +24,7 @@ const fetchUserDetails = async () => {
   try {
     const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/user/profile`, {withCredentials:true});
     const dataResponse = response.data;
-    // Handle the dataResponse as needed
+
     console.log(dataResponse);
    
     const dataApi = response.data;
@@ -43,7 +43,7 @@ const fetchUserAddToCart = async () => {
   try {
     const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/cart`, {withCredentials:true});
     const dataResponse = response.data;
-    // Handle the dataResponse as needed
+
     console.log("cart",dataResponse);
     setCartTotalItems(dataResponse?.totalItems);
    
@@ -59,9 +59,21 @@ const fetchUserAddToCart = async () => {
   }
 };
 
+const clearCart = async () => {
+  try {
+    const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/cart/clear-cart`, {}, { withCredentials: true });
+    if (response.status === 200) {
+      setCartTotalItems(0);
+    }
+  } catch (error) {
+    console.error('Error clearing cart:', error);
+  }
+};
+
+
 
 useEffect(()=>{
-  /**user Details */
+
   fetchUserDetails()
 fetchUserAddToCart()
 },[])
@@ -69,9 +81,9 @@ fetchUserAddToCart()
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900 text-black dark:text-white">
        <Context.Provider value={{
-          fetchUserDetails, // user detail fetch 
+          fetchUserDetails, 
        cartTotalItems,
-       fetchUserAddToCart
+       fetchUserAddToCart,clearCart
       }}>
       <ToastContainer  position='top-center'/>
         <Header/>

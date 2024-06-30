@@ -217,9 +217,9 @@ const Cart = () => {
                                 <div className='border h-52 border-red-200 p-2 hover:bg-green-300  '>
                                 <p className='text-sm font-md pt-1 dark:text-black'>Total Items: {context.cartTotalItems}</p>
                                 <p className='text-sm font-md pt-1 dark:text-black'>Platform fee: {displayINRCurrency(0)} <span className='text-green-500 pl-1'>Free</span></p>
-                                <p className='text-sm font-md pt-1 dark:text-black'>Delivery charge: {displayINRCurrency(17)}</p>
+                                <p className='text-sm font-md pt-1 dark:text-black'>Shipping charge </p>
                                 
-                                <p className='text-sm font-bold pt-1 dark:text-black'>Total Price: {displayINRCurrency(data && data.products.reduce((acc, item) => acc + (item.product.sellingPrice * item.quantity)+17, 0))}</p>
+                                <p className='text-sm font-bold pt-1 dark:text-black'>Order Total : {displayINRCurrency(data && data.products.reduce((acc, item) => acc + (item.product.sellingPrice * item.quantity), 0))}</p>
                                 <button className='bg-green-700 w-full p-2 mt-6 text-white rounded-md hover:bg-white hover:text-green-900' onClick={() => navigate('/order')}>Proceed to shipping</button>
                                 </div>
                             </div>

@@ -17,10 +17,10 @@ const Search = () => {
 
 const searchProduct= async()=>{
 
-  //const encodedSearch = encodeURIComponent(query.search);
+
     try {
       //const params = new URLSearchParams({ search: encodedSearch })
-        //const encodedQuery = encodeURIComponent(searchTerm); 
+     
         const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/products/search?search=${searchTerm}`);
        // const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/products/search${query.search}`)
         setData(response.data)

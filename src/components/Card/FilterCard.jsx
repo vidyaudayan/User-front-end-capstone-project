@@ -14,13 +14,13 @@ export const FilterCard = ({ product, onAddToCart }) => {
      }
  
     return (
-        <div className='w-full sm:w-1/2 md:w-1/3 lg:w-1/4  p-4'>
+        <div className='w-full   p-2'>
             <div className='border rounded-lg overflow-hidden shadow-lg transform hover:scale-105 transition-transform duration-300'>
                 <Link to={'/products/' + product._id}>
                     <img src={product.productPictures[0]} className='w-full h-full' alt={product.title} />
                 </Link>
                 <div className='p-4 bg-white'>
-                    <h2 className='font-medium text-base md:text-lg truncate'>{product.title}</h2>
+                    <h2 className='font-medium text-base md:text-lg truncate dark:text-black'>{product.title}</h2>
                     <p className='capitalize text-slate-500 mt-1'>{product.slug}</p>
                     <div className='flex items-center gap-3 mt-2'>
                         <p className='text-red-600 font-medium'>{displayINRCurrency(product.sellingPrice)}</p>

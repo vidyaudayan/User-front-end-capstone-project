@@ -4,17 +4,19 @@ import { Link } from 'react-router-dom';
 
 const MegaMenu = () => {
   return (
-    <nav className="megamenu">
+    <nav className="megamenu ">
       <ul className="megamenu__list">
         <li className="megamenu__item">
           <a href="#" className="megamenu__link dark:text-white  hover:font-semibold">Men</a>
           <div className="megamenu__dropdown">
             <div className="megamenu__column">
-              <Link to={'/all-products'}><h3 className='font-semibold'>Clothing</h3></Link>
-              <a href="#">T-Shirts</a>
-              <a href="#">Shirts</a>
-              <a href="#">Jeans</a>
-              <a href="#">Jackets</a>
+              <Link to={'/men-all-products'}><h3 className='font-semibold text-black'>Clothing</h3></Link>
+             
+              <Link to="/product/tshirts">T-Shirts</Link>
+              <Link to="/product/shirt">Shirts</Link>
+              <Link to="/product/jeans">Jeans</Link>
+              <Link to="/product/jackets">Jackets</Link>
+             
             </div>
             <div className="megamenu__column">
               <h3 className='font-semibold'>Shoes</h3>
@@ -50,11 +52,11 @@ const MegaMenu = () => {
           <a href="#" className="megamenu__link dark:text-white hover:font-semibold">Women</a>
           <div className="megamenu__dropdown">
             <div className="megamenu__column">
-           <Link to={'/women-all-products'}><h3  className='font-semibold'>Clothing</h3></Link>   
-              <a href="#">Dresses</a>
-              <a href="#">Jeans</a>
-              <a href="#">Kurthi</a>
-              <a href="#">Saree</a>
+           <Link to={'/women-all-products'}><h3  className='font-semibold text-black'>Clothing</h3></Link>   
+           <Link to="/women-product/kurthi">Kurthi</Link>
+           <Link to={'/women-product/womenjackets'}>Jackets</Link>
+           <Link to="/women-product/dress">Dresses</Link>
+            <Link to="/women-product/saree">Saree</Link>
             </div>
             <div className="megamenu__column">
               <h3  className='font-semibold'>Shoes</h3>
@@ -91,26 +93,29 @@ const MegaMenu = () => {
           <a href="#" className="megamenu__link dark:text-white hover:font-semibold">KIDS</a>
           <div className="megamenu__dropdown">
             <div className="megamenu__column">
-             <Link to={'/kids-all-products'}><h3  className='font-semibold'>Clothing</h3></Link> 
-              <a href="#" className='font-semibold'>Boys</a>
-              <a href="#">Shirts</a>
-              <a href="#">Tshirts</a>
-              <a href="#">Shorts</a>
+             <Link to={'/kids-all-products'}><h3  className='font-semibold text-black'>Clothing</h3></Link> 
+             <Link to={'/kids-all-products'}> <h3 className='font-semibold text-slate-800'>Boys</h3></Link>
+              <Link to="/kids-product/kidshirt">Shirts</Link>
+              <Link to="/kids-product/kidtshirts">Tshirts</Link>
+              <Link to="/kids-product/kidshorts">Shorts</Link>
+              <Link to="/kids-product/kidjackets">Jackets</Link>
+            </div>
+
+            <div className="megamenu__column">
+            <Link  to={'/kids-all-products'}><h2  className='font-semibold text-slate-800 '>Girls</h2></Link>
+              <Link to="/kids-product/frock">Frocks</Link>
+              <Link to="/kids-product/kiddresses">Dresses</Link>
+              <Link to={'/kids-product/kidskirts'}>Skirts</Link>
             </div>
             <div className="megamenu__column">
-              <h3  className='font-semibold'>Shoes</h3>
+              <h3  className='font-semibold mt-9'>Shoes</h3>
               <a href="#">Casual Shoes</a>
               <a href="#">Formal Shoes</a>
               <a href="#">Sports Shoes</a>
             </div>
+            
             <div className="megamenu__column">
-              <h3  className='font-semibold'>Girls</h3>
-              <a href="#">Frocks</a>
-              <a href="#">Dresses</a>
-              <a href="#">Skirts</a>
-            </div>
-            <div className="megamenu__column">
-              <h3  className='font-semibold'>Trending</h3>
+              <h3  className='font-semibold mt-9'>Trending</h3>
               <a href="#">T-Shirts</a>
               <a href="#">Shirts</a>
               <a href="#">Jeans</a>
@@ -118,7 +123,7 @@ const MegaMenu = () => {
             </div>
 
             <div className="megamenu__column">
-              <h3  className='font-semibold'>Occation</h3>
+              <h3  className='font-semibold mt-9'>Occation</h3>
               <a href="#">3/4ths</a>
               <a href="#">Shirts</a>
               <a href="#">Jeans</a>

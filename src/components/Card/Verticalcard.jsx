@@ -45,13 +45,13 @@ export const Verticalcard = ({ category, heading }) => {
         {
           products.map((product, index) => {
             return (
-              <div className='w-full min-w-[300px] md:min-w-[340px] max-w-[300px] md:max-w-[320px]  bg-white rounded-sm shadow-md ' key={index}>
-                <div className='bg-slate-200 h-32 p-2 min-w-[140px] md:min-w-[145px] flex gap-1'>
+              <div className='w-full min-w-[300px] md:min-w-[340px] max-w-[300px] md:max-w-[320px]  bg-white rounded-sm shadow-md hover:bg-slate-200 ' key={index}>
+                <div className='bg-slate-200 h-32 p-2 min-w-[140px] md:min-w-[145px] flex gap-1 lg:gap-6 lg:ml-1'>
                   <img src={product.productPictures[0]} className='object-cover   hover:scale-110 transition-all' />
                   <img src={product.productPictures[1]} className='object-cover   hover:scale-110 transition-all' />
                   <img src={product.productPictures[2]} className='object-cover   hover:scale-110 transition-all' />
                 </div>
-                <div className='p-2 grid'>
+                <div className='px-2 py-1 grid'>
                   <h2 className='font-medium text-base md:text-lg text-ellipsis line-clamp-1'>{product?.title}</h2>
                   <p className='capitalize text-slate-500'>{product?.slug}</p>
 
@@ -59,7 +59,7 @@ export const Verticalcard = ({ category, heading }) => {
                     < p className='text-red-600 font-medium' >{displayINRCurrency(product?.sellingPrice)}</p>
                     <p className='line-through text-slate-400'>{displayINRCurrency(product?.price)}</p>
                   </div>
-                  <button className='bg-red-500 hover:bg-red-600 text-white p-1 px-2 rounded-full text-sm py-1 '>Add to Cart</button>
+                  <button className='bg-red-500 hover:bg-red-600 text-white p-1 px-2 rounded-full text-sm py-2 mt-2 mb-2 '>Add to Cart</button>
                 </div>
                 <div>
 

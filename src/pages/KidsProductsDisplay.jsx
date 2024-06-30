@@ -1,69 +1,3 @@
-/*import React from 'react'
-import { Link } from 'react-router-dom'
-import { Outlet } from 'react-router-dom'
-import subCategory from '../helpers/subCategory'
-import { VerticalCardNew } from '../components/Card/VerticalCardNew'
- 
-
-const KidsProductsDisplay = () => {
-  return (
-    <div className='container mx-auto p-8'>
-
-
-      <div className='hidden lg:grid grid-cols-[250px,1fr] ml-10'>
-        <div className='bg-slate-100 p-2 min-h-[calc(100vh-120px)] overflow-y-scroll'>
-{/*sort by*/
-         /* <div >
-            < h3 className='text-base uppercase font-medium text-slate-500 border-b pb-1 border-slate-300'>Sort by</h3>
-            <form className='text-sm flex flex-col gap-2 py-2'>
-              <div className='flex items-center gap-3'>
-                <input type="radio" name='sort' />
-                <label htmlFor="">Price- Low to High</label>
-              </div>
-
-              <div className='flex items-center gap-3'>
-                <input type="radio" name='sort' />
-                <label htmlFor="">Price- High to Low</label>
-              </div>
-            </form>
-
-          </div>
-
-{/*filter by*/
-         /* <div >
-            < h3 className='text-base uppercase font-medium text-slate-500 border-b pb-1 border-slate-300'>Category</h3>
-            <form className='text-sm flex flex-col gap-2 py-2'>
-            {
-                          subCategory.map((categoryName,index)=>{
-                            return(
-                              <div className='flex items-center gap-3'>
-                                 <input type='checkbox' name={"subCategory"}  value={categoryName?.value} id={categoryName?.value}  />
-                                 <label htmlFor={categoryName?.value}>{categoryName?.label}</label>
-                              </div>
-                            )
-                          })
-                        }
-            </form>
-
-          </div>
-        </div>
-
-        <div>
-        <VerticalCardNew category={"666939e5be2e359f1b8b9f1f"} heading={'Trends in Kidsware'}/>  
-        </div>
-
-      </div>
-    </div>
-  )
-
-}*/
-
-
-
-
-
-
-
 
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
@@ -71,6 +5,7 @@ import axios from 'axios';
 import kidSubCategory from '../helpers/kidSubcategory'
 import { VerticalCardNew } from '../components/Card/VerticalCardNew';
 import { FilterCard } from '../components/Card/FilterCard';
+//<VerticalCardNew category={"666939e5be2e359f1b8b9f1f"} heading={'Popular In Fashion'} />
 
 const KidsProductsDisplay= () => {
     const [selectedSubCategories, setSelectedSubCategories] = useState([]);
@@ -95,7 +30,7 @@ const KidsProductsDisplay= () => {
         if (selectedSubCategories.length > 0) {
             fetchProducts();
         } else {
-            setProducts([]); // Clear products if no subcategory is selected
+            setProducts([]); 
         }
     }, [selectedSubCategories,sortOption, priceRange]);
 
@@ -117,137 +52,149 @@ const KidsProductsDisplay= () => {
 };
 
     return (
-        <div className='container mx-auto p-8'>
-            <div className='hidden lg:grid grid-cols-[250px,1fr] ml-10'>
-                <div className='bg-slate-100 p-2 min-h-[calc(100vh-120px)] overflow-y-scroll'>
-                    {/* sort by */}
-                    <div>
-                        <h3 className='text-base uppercase font-medium text-slate-500 border-b pb-1 border-slate-300'>Sort by</h3>
-                        <form className='text-sm flex flex-col gap-2 py-2'>
-                            <div className='flex items-center gap-3'>
-                                <input type="radio" name='sort' value="lowToHigh"
-                                    onChange={handleSortChange} checked={sortOption === 'lowToHigh'}/>
-                                <label className='dark:text-black'>Price- Low to High</label>
-                            </div>
-                            <div className='flex items-center gap-3'>
-                                <input type="radio" name='sort'  value="highToLow"
-                                    onChange={handleSortChange}   checked={sortOption === 'highToLow'}/>
-                                <label className='dark:text-black'>Price- High to Low</label>
-                            </div>
-                        </form>
+        <div className='flex gap-8 container mx-auto p-8'>
+
+
+        {/*left*/}
+       
+            <div className='bg-slate-100 p-4 min-h-[calc(100vh-120px)] h-screen overflow-y-scroll w-56'>
+
+                {/*sort by*/}
+
+                <h3 className='text-base uppercase font-medium text-slate-500 border-b pb-1 border-slate-300'>Sort by</h3>
+                <form className='text-sm flex flex-col gap-2 py-2'>
+                    <div className='flex items-center gap-3'>
+                        <input type="radio" name='sort' value="lowToHigh"
+                            onChange={handleSortChange} checked={sortOption === 'lowToHigh'} />
+                        <label className='dark:text-black'>Price- Low to High</label>
                     </div>
-
- {/* Price Filter */}
- <div>
-                        <h3 className='text-base uppercase font-medium text-slate-500 border-b pb-1 border-slate-300'>Price</h3>
-                        <form className='text-sm flex flex-col gap-2 py-2'>
-                            <div className='flex items-center gap-3'>
-                                <input
-                                    type="radio"
-                                    name="priceRange"
-                                    value="below500"
-                                    onChange={handlePriceRangeChange}
-                                    checked={priceRange === 'below500'}
-                                />
-                                <label htmlFor="below500" className='dark:text-black'>Below Rs.500</label>
-                            </div>
-                            <div className='flex items-center gap-3'>
-                                <input
-                                    type="radio"
-                                    name="priceRange"
-                                    value="500to1000"
-                                    onChange={handlePriceRangeChange}
-                                    checked={priceRange === '500to1000'}
-                                />
-                                <label htmlFor="500to1000" className='dark:text-black'>Rs.500-1000</label>
-                            </div>
-                            <div className='flex items-center gap-3'>
-                                <input
-                                    type="radio"
-                                    name="priceRange"
-                                    value="1001to1500"
-                                    onChange={handlePriceRangeChange}
-                                    checked={priceRange === '1001to1500'}
-                                />
-                                <label htmlFor="1001to1500" className='dark:text-black'>Rs.1001-1500</label>
-                            </div>
-                            <div className='flex items-center gap-3'>
-                                <input
-                                    type="radio"
-                                    name="priceRange"
-                                    value="1501to2000"
-                                    onChange={handlePriceRangeChange}
-                                    checked={priceRange === '1501to2000'}
-                                />
-                                <label htmlFor="1501to2000" className='dark:text-black'>Rs.1501-2000</label>
-                            </div>
-                            <div className='flex items-center gap-3'>
-                                <input
-                                    type="radio"
-                                    name="priceRange"
-                                    value="2001to2500"
-                                    onChange={handlePriceRangeChange}
-                                    checked={priceRange === '2001to2500'}
-                                />
-                                <label htmlFor="2001to2500" className='dark:text-black'>Rs.2001-2500</label>
-                            </div>
-                        </form>
+                    <div className='flex items-center gap-3'>
+                        <input type="radio" name='sort' value="highToLow"
+                            onChange={handleSortChange} checked={sortOption === 'highToLow'} />
+                        <label className='dark:text-black'>Price- High to Low</label>
                     </div>
+                </form>
 
 
-                    {/* filter by */}
-                    <div>
-                        <h3 className='text-base uppercase font-medium text-slate-500 border-b pb-1 border-slate-300'>Category</h3>
-                        <form className='text-sm flex flex-col gap-2 py-2'>
-                            {kidSubCategory.map((categoryName, index) => (
-                                <div className='flex items-center gap-3' key={index}>
-                                    <input
-                                        type='checkbox'
-                                        name='subCategory'
-                                        value={categoryName.value}
-                                        id={categoryName.value}
-                                        onChange={handleCheckboxChange}
-                                        checked={selectedSubCategories.includes(categoryName.value)}
-                                    />
-                                    <label htmlFor={categoryName.value} className='dark:text-black'>{categoryName.label}</label>
-                                </div>
-                            ))}
-                        </form>
+                {/*price filter*/}
 
-                       
+                <h3 className='text-base uppercase font-medium text-slate-500 border-b pb-1 border-slate-300'>Price</h3>
+                <form className='text-sm flex flex-col gap-2 py-2'>
+                    <div className='flex items-center gap-3'>
+                        <input
+                            type="radio"
+                            name="priceRange"
+                            value="below500"
+                            onChange={handlePriceRangeChange}
+                            checked={priceRange === 'below500'}
+                        />
+                        <label htmlFor="below500" className='dark:text-black'>Below Rs.500</label>
                     </div>
-                </div>
-              
+                    <div className='flex items-center gap-3'>
+                        <input
+                            type="radio"
+                            name="priceRange"
+                            value="500to1000"
+                            onChange={handlePriceRangeChange}
+                            checked={priceRange === '500to1000'}
+                        />
+                        <label htmlFor="500to1000" className='dark:text-black'>Rs.500-1000</label>
+                    </div>
+                    <div className='flex items-center gap-3'>
+                        <input
+                            type="radio"
+                            name="priceRange"
+                            value="1001to1500"
+                            onChange={handlePriceRangeChange}
+                            checked={priceRange === '1001to1500'}
+                        />
+                        <label htmlFor="1001to1500" className='dark:text-black'>Rs.1001-1500</label>
+                    </div>
+                    <div className='flex items-center gap-3'>
+                        <input
+                            type="radio"
+                            name="priceRange"
+                            value="1501to2000"
+                            onChange={handlePriceRangeChange}
+                            checked={priceRange === '1501to2000'}
+                        />
+                        <label htmlFor="1501to2000" className='dark:text-black'>Rs.1501-2000</label>
+                    </div>
+                    <div className='flex items-center gap-3'>
+                        <input
+                            type="radio"
+                            name="priceRange"
+                            value="2001to2500"
+                            onChange={handlePriceRangeChange}
+                            checked={priceRange === '2001to2500'}
+                        />
+                        <label htmlFor="2001to2500" className='dark:text-black'>Rs.2001-2500</label>
+                    </div>
+                </form>
 
-                <div className=' p-3 '>
-               
-        
-                {selectedSubCategories.length === 0 && !sortOption && !priceRange ? (
-                <VerticalCardNew category={"666939e5be2e359f1b8b9f1f"} heading={'Popular In Fashion'} />
-              ) : (
-                <>  
-                      
-                      <div className='flex flex-col'>
-                <p className='text-lg font-semibold ml-5 '>Search Results : {products.length}</p>
-                </div>
-                {loading ? (
-                        <p>Loading products...</p>
-                    ) : (
-                        products.length > 0 ? (
-                     
-                            products.map(product => (
-                              
-                                <FilterCard key={product._id} product={product} />
-                            ))
-                        ) : (
-                            <p>No products found for the selected categories.</p>
-                        )
-                    )}
-                    </>
-                        )}
-                </div>
+                {/*sub category filter*/}
+
+                <h3 className='text-base uppercase font-medium text-slate-500 border-b pb-1 border-slate-300'>Category</h3>
+                <form className='text-sm flex flex-col gap-2 py-2'>
+                    {kidSubCategory.map((categoryName, index) => (
+                        <div className='flex items-center gap-3' key={index}>
+                            <input
+                                type='checkbox'
+                                name='subCategory'
+                                value={categoryName.value}
+                                id={categoryName.value}
+                                onChange={handleCheckboxChange}
+                                checked={selectedSubCategories.includes(categoryName.value)}
+                            />
+                            <label htmlFor={categoryName.value} className='dark:text-black'>{categoryName.label}</label>
+                        </div>
+                    ))}
+                </form>
+
+
             </div>
-        </div>
+      
+
+
+
+        {/*right*/}
+    
+
+<div className='container mx-auto  '>
+
+
+{selectedSubCategories.length === 0 && !sortOption && !priceRange ? (
+<VerticalCardNew category={"666939e5be2e359f1b8b9f1f"} heading={'Kids Fashion'} />
+) : (
+<>
+<div className='bg-green-100 p-2'>
+<p className='text-lg font-semibold ml-1 dark:text-black'>Search Results: {products.length}</p>
+
+</div>
+
+
+{loading ? (
+    <p>Loading products...</p>
+) : (
+    products.length > 0 ? (
+        <>
+            <div className='w-full grid grid-cols-4 gap-5 mt-3'>
+            {products.map(product => (
+
+<FilterCard className='w-[400px]' key={product._id} product={product} />
+
+
+))}
+            </div>
+        </>
+    ) : (
+        <p>No products found for the selected categories.</p>
+    )
+)}
+</>
+)}
+</div>
+</div>
     );
 };
 

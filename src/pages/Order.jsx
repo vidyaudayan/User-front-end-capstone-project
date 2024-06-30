@@ -10,6 +10,8 @@ import {loadStripe} from '@stripe/stripe-js';
 const Order = () => {
     const [loading, setLoading] = useState(true);
     const [data, setData] = useState(null);
+    const [isAddressSubmitted, setIsAddressSubmitted] = useState(false);
+    const [showAddressForm, setShowAddressForm] = useState(true);
     const [address, setAddress] = useState({
         houseName:'',
         street: '',
@@ -46,43 +48,13 @@ const Order = () => {
         }));
     };
 
-    /*const handleSubmitOrder = async () => {
-        const orderData = {
-            products: data.products.map(item => ({
-              product_id: item.product._id,
-              quantity: item.quantity,
-            })),
-             address: {
-                houseName: address.houseName,
-                street: address.street,
-                city: address.city,
-                state: address.state,
-                pinCode: address.pinCode,
-                country: address.country,
-              },
-          };
-        try {
-            const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/order`, {
-               orderData
-            }, { withCredentials: true });
-
-            if (response.data.success) {
-                toast.success("Order placed successfully!");
-                navigate('/payment'); 
-            } else {
-                toast.error("Failed to place order");
-            }
-        } catch (error) {
-            console.error('Error placing order:', error);
-            toast.error("Error placing order");
-        }
-    };*/
+    
  
     const handleSubmitOrder = async () => {
         const totalPrice = data.products.reduce((acc, item) => acc + (item.product.sellingPrice * item.quantity) + 17, 0)
         console.log("order total",totalPrice)
         try {
-          // Ensure data and address are valid before proceeding
+      
           if (!data || !data.products || !address.houseName) {
             throw new Error('Missing required product or address information');
           }
@@ -100,18 +72,20 @@ const Order = () => {
               city: address.city,
               state: address.state,
               pinCode: address.pinCode,
-              country: address.country, // Assuming you have a country field
+              country: address.country, 
             }, totalPrice
           };
       
           const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/order`, orderData, { withCredentials: true });
         
-            toast.success("Order placed successfully!");
+            toast.success("Address added successfully!");
+            setIsAddressSubmitted(true);
+            setShowAddressForm(false)
              //navigate('/payment'); 
         
          
         } catch (error) {
-          console.error('Error placing order:', error);
+          console.error('Error in adding address:', error);
           toast.error("Error placing order");
         }
       };
@@ -138,22 +112,48 @@ const Order = () => {
     }
   }
 
+
+  const handleAddAnotherAddress = () => {
+    setShowAddressForm(true);
+    setIsAddressSubmitted(false);
+    setAddress({
+        houseName: '',
+        street: '',
+        city: '',
+        state: '',
+        pinCode: '',
+        country: ''
+    });
+};
+  
+
+
     return (
-        <div className='container mx-auto h-1/3 p-4 lg:p-8'>
+        <div className='container mx-auto h-1/2 p-1 lg:p-4'>
+        
+         {isAddressSubmitted ? (
+                       <h2></h2>
+                    ):( <h2 className='pb-1 '>Please add your address first and then go to payment</h2>)}
+       
+       
         {loading ? (
             <div>Loading...</div>
         ) : (
-            <div className='flex flex-col lg:flex-row gap-2'>
-                <div className='w-full lg:w-1/2 p-2 bg-green-100 border border-red-100'>
+          
+            <div className='flex flex-col lg:flex-row gap-4'>
+             
+                <div className='w-full lg:w-1/2 p-2 h-full bg-green-100 border border-red-100'>
               
                <div className='flex items-center justify-center'>
                <span className='text-center text-xl font-semibold p-3 dark:text-black'> <IoLocation /></span>
-               <h3 className='text-center text-xl font-semibold p-3 rounded hover:bg-red-300 dark:text-black'>  Delivery Address</h3>
+               <h3 className='text-center text-xl font-semibold p-1 rounded hover:bg-red-300 dark:text-black'>  Delivery Address</h3>
                <span className='text-center text-xl font-semibold p-3 dark:text-black'> <IoLocation /></span>
                </div>
                     
+
+               {showAddressForm ? (
                     <form>
-                        <div className='mb-4'>
+                        <div className='mb-1'>
                             <label className='block text-sm font-bold mb-2 dark:text-black' htmlFor='houseName'>House Name</label>
                             <input
                                 className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline '
@@ -165,7 +165,7 @@ const Order = () => {
                                 onChange={handleInputChange}
                             />
                         </div>
-                        <div className='mb-4'>
+                        <div className='mb-2'>
                             <label className='block text-sm font-bold mb-2 dark:text-black' htmlFor='street'>Street</label>
                             <input
                                 className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
@@ -177,7 +177,7 @@ const Order = () => {
                                 onChange={handleInputChange}
                             />
                         </div>
-                        <div className='mb-4'>
+                        <div className='mb-2'>
                             <label className='block text-sm font-bold mb-2 dark:text-black' htmlFor='city'>City</label>
                             <input
                                 className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
@@ -189,7 +189,7 @@ const Order = () => {
                                 onChange={handleInputChange}
                             />
                         </div>
-                        <div className='mb-4'>
+                        <div className='mb-2'>
                             <label className='block text-sm font-bold mb-2 dark:text-black' htmlFor='state'>State</label>
                             <input
                                 className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
@@ -201,7 +201,7 @@ const Order = () => {
                                 onChange={handleInputChange}
                             />
                         </div>
-                        <div className='mb-4'>
+                        <div className='mb-2'>
                             <label className='block text-sm font-bold mb-2 dark:text-black' htmlFor='pinCode'>Pin Code</label>
                             <input
                                 className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
@@ -213,7 +213,7 @@ const Order = () => {
                                 onChange={handleInputChange}
                             />
                         </div>
-                        <div className='mb-4'>
+                        <div className='mb-2'>
                             <label className='block text-sm font-bold mb-2 dark:text-black' htmlFor='country'>Country</label>
                             <input
                                 className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
@@ -226,26 +226,61 @@ const Order = () => {
                             />
                         </div>
                         <button
-                            className='bg-green-500 w-full p-2  text-white rounded-md hover:bg-green-700  '
+                            className='bg-green-500 w-full p-1 mb-1  text-white rounded-md hover:bg-green-700  '
                             type='button'
                             onClick={handleSubmitOrder}
                         >
-                            Place Order
+                            Add Address
                         </button>
                     </form>
+               ):(
+
+                <div>
+                                <div className='mb-4'>
+                                    <p className='text-sm font-bold mb-2 dark:text-black'>House Name: {address.houseName}</p>
+                                </div>
+                                <div className='mb-4'>
+                                    <p className='text-sm font-bold mb-2 dark:text-black'>Street: {address.street}</p>
+                                </div>
+                                <div className='mb-4'>
+                                    <p className='text-sm font-bold mb-2 dark:text-black'>City: {address.city}</p>
+                                </div>
+                                <div className='mb-4'>
+                                    <p className='text-sm font-bold mb-2 dark:text-black'>State: {address.state}</p>
+                                </div>
+                                <div className='mb-4'>
+                                    <p className='text-sm font-bold mb-2 dark:text-black'>Pin Code: {address.pinCode}</p>
+                                </div>
+                                <div className='mb-4'>
+                                    <p className='text-sm font-bold mb-2 dark:text-black'>Country: {address.country}</p>
+                                </div>
+                                <button
+                                    className='bg-green-500 w-full p-2 text-white rounded-md hover:bg-green-700 mb-4'
+                                    type='button'
+                                    onClick={handleAddAnotherAddress}
+                                >
+                                    Add Another Address
+                                </button>
+                            </div>
+                        )}
                 </div>
 
-                <div className='w-full lg:w-1/3 h-1/4 p-4 ml-16 bg-green-100 '>
-                    <h3 className='text-center font-semibold p-3 dark:text-black'>Order Details</h3>
+                <div className='w-full lg:w-1/3 h-1/4 p-2  bg-green-100 lg:ml-16 '>
+                    <h3 className='text-center font-semibold p-3 dark:text-black '>Order Summary</h3>
                     <div className='border p-2 hover:bg-green-300'>
                         <p className='text-sm font-md pt-1 dark:text-black'>Total Items: {context.cartTotalItems}</p>
                         <p className='text-sm font-md pt-1 dark:text-black'>Platform fee: {displayINRCurrency(0)} <span className='text-green-500 pl-1'>Free</span></p>
-                        <p className='text-sm font-md pt-1 dark:text-black'>Delivery charge: {displayINRCurrency(17)}</p>
-                        <p className='text-sm font-bold pt-1 dark:text-black'>Total Price: {displayINRCurrency(data && data.products.reduce((acc, item) => acc + (item.product.sellingPrice * item.quantity) + 17, 0))}</p>
+                        <p className='text-sm font-md pt-1 dark:text-black'>Shipping charge: </p>
+                        <p className='text-sm font-bold pt-1 dark:text-black'>Amount payable: {displayINRCurrency(data && data.products.reduce((acc, item) => acc + (item.product.sellingPrice * item.quantity) , 0)+17)}</p>
                     </div>
                     <div>
+                 
+
+{isAddressSubmitted ? (
                         <button className='w-full p-2 text-white bg-red-500 hover:bg-red-700' onClick={handlePayment}>Proceed to Payment</button>
-                    </div>
+                    ):(<button className='w-full p-2 bg-red-300 hover:bg-grey-500 text-slate-400' >Proceed to Payment</button>)}
+                      
+                        </div>
                     
                 </div>
                 

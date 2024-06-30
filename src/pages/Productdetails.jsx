@@ -7,6 +7,9 @@ import { FaStarHalfAlt } from "react-icons/fa";
 import displayINRCurrency from '../helpers/Currency';
 import ReviewForm from './Review';
 import { toast } from 'react-toastify';
+import { useContext } from 'react'
+import { addTocart } from '../helpers/AddtoCart'
+import Context from "../context/context"
 
 import Horizontalcard from '../components/Card/Horizontalcard';
 const Productdetails = () => {
@@ -16,6 +19,12 @@ const Productdetails = () => {
 
     const [showReviewForm, setShowReviewForm] = useState(false);
     const [reviews, setReviews] = useState([]);
+    const {fetchUserAddToCart}= useContext(Context)
+    
+    const handleAddToCart = async(id)=>{
+        await addTocart(id)
+        fetchUserAddToCart()
+     }
     const [data, setData] = useState({
         title: "",
         slug: "",
@@ -144,7 +153,7 @@ const Productdetails = () => {
 
                 <div className='flex flex-col items-center gap-3 my-2'>
                     <button className='min-w-[120px] border-2 border-orange-600 px-3 py-1 font-medium rounded hover:bg-orange-600 hover:text-white'> Buy</button>
-                    <button className='min-w-[120px] border-2 border-red-600 px-3 py-1 font-medium  rounded hover:bg-red-500 hover:text-white'>Add To Cart</button>
+                    <button className='min-w-[120px] border-2 border-red-600 px-3 py-1 font-medium  rounded hover:bg-red-500 hover:text-white' onClick={()=>handleAddToCart(data?._id)}>Add To Cart</button>
                 </div>
                  
 

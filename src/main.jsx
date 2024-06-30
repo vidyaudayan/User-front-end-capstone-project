@@ -14,10 +14,6 @@ import Home from './pages/Home.jsx';
 import LoginForm from './pages/Login.jsx';
 import SignUpForm from './pages/Signup.jsx';
 import ForgotPassword from './pages/ForgotPassword.jsx';
-import AdminPanel from './AdminPages/AdminPanel.jsx'
-import AllUsers from './AdminPages/AllUsers.jsx'
-import AllProducts from './AdminPages/AllProducts.jsx'
-import { usersLoader } from './AdminPages/AllUsers.jsx'
 import AllProductsDisplay from './pages/AllProductsDisplay.jsx'
 import WomenProductsDisplay from './pages/WomenProductsDisplay.jsx'
 import KidsProductsDisplay from './pages/KidsProductsDisplay.jsx'
@@ -27,7 +23,10 @@ import Order from './pages/Order.jsx'
 import Search from './pages/Search.jsx'
 import PaymentSuccess from './pages/PaymentSuccess.jsx'
 import PaymentCancel from './pages/PaymentCancel.jsx'
-
+import DisplayProducts from './pages/DisplayProducts.jsx'
+import DisplayProductsWomen from './pages/DisplayProductsWomen.jsx'
+import DisplayProductsKids from './pages/DisplayProductsKids.jsx'
+import Profile from './pages/Profile.jsx'
 const router = createBrowserRouter([
   {
    
@@ -50,11 +49,15 @@ const router = createBrowserRouter([
         element: <LoginForm/>,
       },
       {
+        path: "/profile",
+        element: <Profile/>,
+      },
+      {
         path: "/forgot-password",
         element: <ForgotPassword/>,
       },
       {
-        path: "/all-products",
+        path: "/men-all-products",
         element: <AllProductsDisplay/>,
       },
       {
@@ -68,6 +71,18 @@ const router = createBrowserRouter([
       {
         path:'/products/:productId',
         element:<Productdetails/>
+      },
+      {
+        path:'/product/:slug',
+        element:<DisplayProducts/>
+      },
+      {
+        path:'/women-product/:slug',
+        element:<DisplayProductsWomen/>
+      },
+      {
+        path:'/kids-product/:slug',
+        element:<DisplayProductsKids/>
       },
       {
           path:"/cart",
@@ -89,24 +104,7 @@ const router = createBrowserRouter([
       path:"/search",
       element:<Search/>
       },
-     
-      {
-        path: "/admin-panel",
-        element:<AdminPanel/>,
-        children: [
-          {
-            path: "get-users",
-            element: <AllUsers />,
-            loader: usersLoader,
-          },
-          {
-            path: "get-products",
-            element: <AllProducts />,
-          },
-        ],
-      },
-    
-       
+        
       
     ],
   },

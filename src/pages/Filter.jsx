@@ -9,12 +9,12 @@ const CategoryPage = ({ category }) => {
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
-        // Set subcategories based on the selected category
+     
         setAvailableSubCategories(subCategory[category] || []);
     }, [category]);
 
     useEffect(() => {
-        // Fetch products based on selected subcategories
+ 
         const fetchProducts = async () => {
             setLoading(true);
             try {
@@ -30,7 +30,7 @@ const CategoryPage = ({ category }) => {
         if (selectedSubCategories.length > 0) {
             fetchProducts();
         } else {
-            setProducts([]); // Clear products if no subcategory is selected
+            setProducts([]); 
         }
     }, [selectedSubCategories]);
 

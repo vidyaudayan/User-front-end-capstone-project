@@ -48,28 +48,29 @@ const Header = () => {
     }
   };
 
- const handleSearch = (e)=>{
-const {value}= e.target
-if(value){
-navigate(`/search?q=${value}`)
-}else{
-  navigate('/search')
-}
- }
+  const handleSearch = (e) => {
+    const { value } = e.target
+    if (value) {
+      navigate(`/search?q=${value}`)
+    } else {
+      navigate('/search')
+    }
+  }
 
   return (
-    <header className='h-24 shadow-md w-full fixed mb-8 z-40 dark:bg-black bg-slate-300 '>
+
+    <header className='h-32 shadow-md w-full fixed mb-8 z-40 dark:bg-black bg-slate-300 '>
       <div className='h-full container mx-auto flex items-center px-4 justify-between'>
 
-        <div className='ml-6' >
-          <Link to='/'> <img className='w-60 ' src={logo} alt="" /></Link>
+        <div className='ml-1' >
+          <Link to='/'> <img className='sm:h-12 sm:w-full' src={logo} alt="" /></Link>
         </div>
         <div>
 
           <MegaMenu />
         </div>
 
- 
+
 
         <div className='hidden lg:flex items-center mb-6 justify-between border border-slate-300 rounded-full px-4 bg-white shadow-md'>
           <input className='w-full outline-none px-2 py-1 text-gray-700' type="text" placeholder='Search your products...' onChange={handleSearch} />
@@ -92,28 +93,23 @@ navigate(`/search?q=${value}`)
 
           <div className='flex flex-col items-center  justify-center  '>
             <div className='text-2xl cursor-pointer' onClick={() => setMenuDisplay(preve => !preve)}>
-              <FaUserAlt className='' /></div>
-            {
-              menuDisplay && (
-                <div className='absolute mt-8 bg-white bottom-0 top-11 h-fit p-2 shadow-lg rounded  '>
-                  <nav>
-                    <Link className='hover:bg-slate-100 p-2 hidden md:block' onClick={() => setMenuDisplay(preve => !preve)} ></Link>
-                  </nav>
-                </div>
-              )
-            }
+
+              <Link to={'/profile'}><FaUserAlt /></Link>
+
+            </div>
+
 
 
           </div>
 
 
 
-          <Link to={'/cart'} className='text-2xl relative' >
+          <Link to={'/cart'} className='text-2xl relative mr-1' >
             <span> <FaShoppingBag /></span>
             {
               user?.firstName ? (
 
-                <div className=' bg-fuchsia-600 text-white w-5 h-5 rounded-full p-2 flex items-center justify-center absolute -top-2 -right-3'>
+                <div className=' bg-red-600 text-white w-5 h-5 rounded-full p-2 flex items-center justify-center absolute -top-2 -right-3'>
                   <p className='text-sm'>{context.cartTotalItems}</p></div>
               ) : ("")
             }
@@ -122,17 +118,17 @@ navigate(`/search?q=${value}`)
 
           </Link>
           <div>
-          <Theme/>
+            <Theme />
+          </div>
+
         </div>
-      
-        </div>
-       
+
         <div>
           {
             user?.id ? (
-              <button onClick={handleLogout} className=' bg-red-600 text-white h-10 rounded w-20 p-2 mr-8 ml-2 hover:bg-red-700 underline hover:underline-offset-2'>Sign Out</button>
+              <button onClick={handleLogout} className=' bg-red-600 text-white h-10 rounded w-20 p-2 mr-8 ml-2 hover:bg-red-700  '>Sign Out</button>
             ) : (
-              <Link to='/signup' className=' bg-red-600 text-white px-3 py-1 rounded-full hover:bg-red-700 underline hover:underline-offset-2'>Signup/Login</Link>
+              <Link to='/signup' className=' bg-red-600 text-white px-3 py-1 rounded-full hover:bg-red-700 pb-2 ml-2 hover:underline-offset-2'>Signup/Login</Link>
             )
           }
 
@@ -144,7 +140,9 @@ navigate(`/search?q=${value}`)
 
 
       </div>
+
     </header>
+
   )
 }
 

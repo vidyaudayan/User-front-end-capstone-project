@@ -24,19 +24,18 @@ export function EmblaCarousel1() {
                 <div className="embla__slide">
                     <img src={image1} alt='' />
                     
-                    <div className="marquee text-white bg-black bg-opacity-50">
+                    <div className="marquee bg-black bg-opacity-50">
                         <div className="slides">
                             <div className="slide">
-                                <span className="text-lg font-bold">
-                                    #Shop with Exciting Offers..##Shop with Exciting Offers..##Shop with Exciting Offers..##Shop with Exciting Offers...##Shop with Exciting Offers..##Shop with Exciting Offers..
+                                <span className="text-lg  text-red-700 font-bold">
+                                    *Best prices..!!Make your deal..  *Best prices..!!Make your deal.. *Best prices..!!Make your deal.. *Best prices..!!Make your deal..
                                 </span>
 
                             </div>
                             <div className="slide">
-                                <span className="text-lg font-bold">
-                                    #Shop with Exciting Offers..##Shop with Exciting Offers..##Shop with Exciting Offers..##Shop with Exciting Offers...##Shop with Exciting Offers..##Shop with Exciting Offers..
+                                <span className="text-lg text-blue-950 font-bold">
+                                *Best prices..!!Make your deal.. *Best prices..!!Make your deal.. *Best prices..!!Make your deal.. *Best prices..!!Make your deal..
                                 </span>
-
                             </div>
                         </div>
                     </div>
