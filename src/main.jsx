@@ -27,6 +27,7 @@ import DisplayProducts from './pages/DisplayProducts.jsx'
 import DisplayProductsWomen from './pages/DisplayProductsWomen.jsx'
 import DisplayProductsKids from './pages/DisplayProductsKids.jsx'
 import Profile from './pages/Profile.jsx'
+import ViewOrder from './pages/ViewOrder.jsx'
 
 const router = createBrowserRouter([
   {
@@ -96,6 +97,10 @@ const router = createBrowserRouter([
     {
       path:"/success",
       element:<PaymentSuccess/>
+    },
+    {
+      path:"/view-order",
+      element:<ViewOrder/>
     },
    
     {
