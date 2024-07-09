@@ -3,6 +3,7 @@ import success from '../assets/success.gif'
 import { useEffect ,useContext} from 'react';
 import { useLocation } from 'react-router-dom';
 import axios from 'axios';
+
 import Context from '../context/context';
 const PaymentSuccess = () => {
 
@@ -43,6 +44,7 @@ const PaymentSuccess = () => {
     <div className='w-full bg-green-100  max-w-md mx-auto flex flex-col items-center justify-center  mt-6'>
     <img src={success} alt="" />
     <h3 className='font-bold text-lg p-3'>Payment Successsful</h3>
+   
     </div>
   )
 }

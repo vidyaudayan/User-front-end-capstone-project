@@ -58,12 +58,13 @@ const Cart = () => {
         try {
             const response = await axios.put(
                 `${import.meta.env.VITE_BASE_URL}/cart/update`,
-                { productId, quantity }, // Ensure the product ID is sent as an object
+                { productId, quantity }, 
                 { withCredentials: true }
             );
             console.log(response);
             updateCartLocally(productId, quantity);
             toast.success("Product quantity updated");
+            window.location.reload()
             return response
         } catch (error) {
             console.error("Error adding product to cart:", error);

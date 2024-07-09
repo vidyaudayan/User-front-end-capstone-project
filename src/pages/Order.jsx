@@ -270,7 +270,7 @@ const Order = () => {
                     <div className='border p-2 hover:bg-green-300'>
                         <p className='text-sm font-md pt-1 dark:text-black'>Total Items: {context.cartTotalItems}</p>
                         <p className='text-sm font-md pt-1 dark:text-black'>Platform fee: {displayINRCurrency(0)} <span className='text-green-500 pl-1'>Free</span></p>
-                        <p className='text-sm font-md pt-1 dark:text-black'>Shipping charge: </p>
+                        <p className='text-sm font-md pt-1 dark:text-black'>Shipping charge: {displayINRCurrency(17)} </p>
                         <p className='text-sm font-bold pt-1 dark:text-black'>Amount payable: {displayINRCurrency(data && data.products.reduce((acc, item) => acc + (item.product.sellingPrice * item.quantity) , 0)+17)}</p>
                     </div>
                     <div>
